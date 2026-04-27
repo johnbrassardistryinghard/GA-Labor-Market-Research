@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: ga-labor-market-dashboard
+    runtime: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn ga_labor_dashboard_v2_render:server --workers 1 --threads 4 --timeout 120"
+    envVars:
+      - key: FRED_API_KEY
+        sync: false
+      - key: PYTHON_VERSION
+        value: 3.11.9
